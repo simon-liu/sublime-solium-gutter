@@ -141,6 +141,7 @@ class SoliumGutterCommand(sublime_plugin.TextCommand):
         return subprocess.check_output(run, stderr=subprocess.STDOUT, shell=True, env=os.environ)
       except Exception as exception:
         print(exception.output)
+        return exception.output
 
 class SoliumGutterEventListeners(sublime_plugin.EventListener):
   timer = None
