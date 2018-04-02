@@ -41,7 +41,7 @@ class SoliumGutterCommand(sublime_plugin.TextCommand):
 
       hint_point = self.view.text_point(int(line_no) - 1, int(column_no if column_no != "NaN" else "1") - 1)
       hint_region = self.view.line(hint_point)
-    
+
       regions.append(hint_region)
       menuitems.append(line_no + ":" + column_no + " " + message)
       SoliumGutterStore.errors.append((hint_region, message))
@@ -76,8 +76,7 @@ class SoliumGutterCommand(sublime_plugin.TextCommand):
       if output.find(OUTPUT_VALID) != -1:
         output = output.decode('utf-8');
         return output
-      print(output)
-      raise Exception(output)
+      return sublime.error_message(output.decode('utf-8'))
     except:
       # Something bad happened.
       print("Unexpected error({0}): {1}".format(sys.exc_info()[0], sys.exc_info()[1]))
