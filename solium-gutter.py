@@ -76,7 +76,9 @@ class SoliumGutterCommand(sublime_plugin.TextCommand):
       if output.find(OUTPUT_VALID) != -1:
         output = output.decode('utf-8');
         return output
-      return sublime.error_message(output.decode('utf-8'))
+
+      sublime.error_message(output.decode('utf-8'))
+      return output.decode('utf-8')
     except:
       # Something bad happened.
       print("Unexpected error({0}): {1}".format(sys.exc_info()[0], sys.exc_info()[1]))
